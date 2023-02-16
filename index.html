@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <progress id="progressBar" value="0" max="100"> 0% </progress>
+</body>
+
+<script>
+    class Country 
+    {
+        constructor(idNation, idYear, nation, population, slugNation, year) 
+        {
+            this.idNation = idNation;
+            this.idYear = idye;
+            this.nation = nation;
+            this.population = population;
+            this.slugNation = slugNation;
+            this.year = year;
+        }
+    }
+
+
+    function Load() 
+    {
+        xhr.open("GET", "https://datausa.io/api/data?drilldowns=Nation&measures=Population");
+        xhr.onload = function () 
+        {
+            let employees = JSON.parse(this.responseText);
+            console.log(employees);
+        }
+        xhr.send();
+    }
+
+    function updateProgress(event) 
+    {
+        if (event.lengthComputable) 
+        {
+            const percentComplete = (event.loaded / event.total) * 100;
+            progressBar.value = percentComplete;
+        } 
+        else 
+        {
+
+        }
+    }
+    
+    let xhr = new XMLHttpRequest();
+    let progressBar = document.getElementById("progressBar");
+    xhr.addEventListener("progress", updateProgress);
+    Load();
+
+</script>
+
+</html>
