@@ -23,13 +23,15 @@
             this.population = population;
             this.slugNation = slugNation;
             this.year = year;
-        }
+        }   
     }
 
 
     function Load() 
     {
-        xhr.open("GET", "https://datausa.io/api/data?drilldowns=Nation&measures=Population");
+        xhr = new XMLHttpRequest();
+        xhr.addEventListener("progress", updateProgress);
+        xhr.open("GET", "https://raw.githubusercontent.com/mdn/content/main/files/en-us/_wikihistory.json");
         xhr.onload = function () 
         {
             let employees = JSON.parse(this.responseText);
@@ -53,7 +55,6 @@
     
     let xhr = new XMLHttpRequest();
     let progressBar = document.getElementById("progressBar");
-    xhr.addEventListener("progress", updateProgress);
     Load();
 
 </script>
